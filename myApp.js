@@ -9,19 +9,21 @@ var app = express();
 
 
 /** 1) Meet the node console. */
+const absolutePath = __dirname + '/views/index.html'
+const assets = __dirname + '/public'
 
-
-/** 2) A first working Express Server */
-
-
-/** 3) Serve an HTML file */
+app.get('/', (req, res) => {
+	res.sendFile(absolutePath)
+})
 
 
 /** 4) Serve static assets  */
-
+app.use(express.static(assets))
 
 /** 5) serve JSON on a specific route */
-
+app.get('/json', (req,res) => {
+	res.json({'message': 'Hello JSON'})
+})
 
 /** 6) Use the .env file to configure the app */
  
@@ -50,7 +52,7 @@ var app = express();
 
 // This would be part of the basic setup of an Express app
 // but to allow FCC to run tests, the server is already active
-/** app.listen(process.env.PORT || 3000 ); */
+app.listen(process.env.PORT || 3000 ); 
 
 //---------- DO NOT EDIT BELOW THIS LINE --------------------
 
